@@ -62,6 +62,20 @@ async function run() {
       const result = await coffees.insertOne(coffee)
       res.send(result)
     })
+
+    app.patch('/addcoffee/:id', async(req, res)=>{
+      const id = req.params.id;
+      const updatedData = req.body;
+      const filter = {_id: new ObjectId(id)}
+      const updatedDoc ={
+        $set:{...updatedData}
+      }
+      const result = await coffees.updateOne(filter, updatedDoc)
+
+      res.send(result)
+
+    })
+
     app.delete('/addcoffee/:id', async(req, res)=>{
       const id = req.params.id;
       const query = { _id: new ObjectId(id)};
