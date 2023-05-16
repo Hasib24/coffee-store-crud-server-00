@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
+const jwt = require('jsonwebtoken')
 
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
@@ -46,6 +47,9 @@ async function run() {
     const database = client.db("coffeeDB");
     const coffees = database.collection("coffees");
 
+   
+
+    //servies route
     app.get('/', (req, res) => {
       res.send('Hello World!')
     })
